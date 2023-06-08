@@ -1,0 +1,73 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+nav{
+    background-color: rgb(4, 4, 80);
+    color: white;
+    font-weight: 600;
+    height: 60px;
+
+    display: flex;
+    flex-direction: row-reverse;
+
+    padding: 20px;
+    align-content: center;
+}
+p{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+/*Página principal*/
+.main{
+    padding-top: 100px;
+    margin: auto;
+    background-color: rgb(255, 255, 255);
+    width: 70%;
+    height: 70%;
+
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: center;
+
+    gap: 30px;
+}
+
+.modulos{
+    background-color: rgb(255, 255, 255);
+    width: 350px;
+    height: 350px;
+
+    border-radius: 15px;
+    box-shadow: 0px 7px 12px 7px #c5c4c4;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:30px
+}
+
+.botonModulo{
+    background-color: transparent;
+    border: 0;
+}
+.img{
+    width: 150px;
+}
+
+/*Modulo clientes*/
+.buscar{
+    display: flex;
+    justify-content: flex-end;
+    gap:15px;
+}
+
+
+
+
+

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Styles-->
+    <link rel="stylesheet" type="text/css" href="styles.css" >
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <title>TravelExp</title>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+</head>
+<body>
+
+    <nav>
+        <p>Administrador</p>
+    </nav>
+    <!--Modulos-->
+    <main id="" class="main" >
+        <div class="modulos" >
+            <button id="clientes" class="botonModulo">
+                <img src="/img/usuario.png" alt="Clientes" class="img">
+            </button>
+            <h3>Clientes</h3>
+        </div>
+        <div class="modulos">
+            <button id="rutas" class="botonModulo">
+                <img src="/img/ruta-de-vuelo.png" alt="Rutas" class="img">
+            </button>
+            <h3>Rutas</h3>
+
+        </div>
+        
+        <div class="modulos">
+            <button id="compra-tiquetes" class="botonModulo">
+                <img src="/img/tiquete.png" alt="Compra de tiquetes" class="img">
+            </button>
+            <h3>Venta de tiquetes</h3>
+
+        </div>
+
+        <div class="modulos">
+            <button id="puntos" class="botonModulo">
+                <img src="/img/estrella.png" alt="Puntos" class="img">
+            </button>
+            <h3>Fidelización</h3>
+
+        </div>
+    </main>
+
+    <div id="modulo-clientes" class="moduloClientes">
+        <h2>Clientes</h2>
+        <div class="buscar">
+            <p>Buscar:</p>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search"  aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+        
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col"  style="color: darkblue;">ID</th>
+                    <th scope="col"  style="color: darkblue;">Número de identificación</th>
+                    <th scope="col"  style="color: darkblue;">Nombre</th>
+                    <th scope="col"  style="color: darkblue;">Apellidos</th>
+                    <th scope="col"  style="color: darkblue;">Teléfono</th>
+                    <th scope="col"  style="color: darkblue;">Correo electrónico</th>
+                    <th scope="col"  style="color: darkblue;">Fecha de nacimiento</th>
+                    <th scope="col"  style="color: darkblue;">Nacionalidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="1">
+                    <th scope="row">1</th>
+                    <td>100725564</td>
+                    <td>Juan Pérez</td>
+                    <td>jp@gmail.com</td>
+                    <td>3045125693</td>
+                    <td>jp@gmail.com</td>
+                    <td>3045125693</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+    <!--JavaScript-->
+    <script src="travelExp.js"></script>
+    <!--Bootstrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <!--SweetAlert2-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>
