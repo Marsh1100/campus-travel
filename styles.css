@@ -21,6 +21,8 @@ p{
     margin-top: auto;
     margin-bottom: auto;
 }
+
+
 /*Página principal*/
 .main{
     padding-top: 10%;
@@ -62,6 +64,11 @@ p{
 .moduloClientes{
     margin:auto;
     width: 80%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
 
 @media (max-width: 945px){
@@ -90,7 +97,7 @@ p{
 
 }
 /*Agregar cliente*/
-.agregarCliente{
+.agregarCliente, .editarCliente{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -100,7 +107,11 @@ p{
 
     display: flex;
     flex-direction: column;
-    align-items: center;
+}
+
+.editarCliente{
+    color: rgb(98, 47, 2);
+
 }
 
 .form{
@@ -111,8 +122,12 @@ p{
     gap: 10px;
 
     padding: 30px;
-    background: linear-gradient(68deg, rgba(19,13,126,1) 0%, rgba(7,7,52,1) 50%, rgba(0,212,255,1) 100%);    padding: 15px;
+    background: linear-gradient(68deg, rgb(4, 245, 221) 0%, rgba(7,7,52,1) 50%, rgb(1, 30, 83) 100%);    padding: 15px;
     border-radius: 15px;
+
+    align-content: center;
+    justify-items: end;
+
 }
 @media (max-width: 1026px){
     .form{
@@ -120,7 +135,10 @@ p{
         flex-direction: column;
     }
 }
-
+input{
+    background-color: white;
+    color: rgb(1, 1, 41);
+}
 .hidden{
     display: none;
 }
