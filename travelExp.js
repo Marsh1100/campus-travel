@@ -32,12 +32,21 @@ let clientes = [
 let rutas = [
     {
         id:12345,
-        valorTiquete: 125000,
+        nombreRuta: 'Bucaramanga-Bogotá',
         ciudadOrigen: 'Bucaramanga',
         ciudadDestino: 'Bogotá',
-        puntos: 50,
-        nombreRuta: 'Bucaramanga-Bogotá'
+        valorTiquete: 125000,
+        puntosRuta: 50,
+    },
+    {
+        id:456789,
+        nombreRuta: 'Bucaramanga-Cartagena',
+        ciudadOrigen: 'Bucaramanga',
+        ciudadDestino: 'Cartagena',
+        valorTiquete: 200000,
+        puntosRuta: 80,
     }
+
 ];
 //INICIO
 const $main = document.getElementById('main-modulos');
@@ -262,5 +271,83 @@ document.addEventListener('click',function(event){
 //RUTAS
 const $botonRutas = document.getElementById('rutas');
 const $mRutas = document.getElementById('modulo-rutas');
+const $bAgregarRuta = document.getElementById('b-agregar-ruta');
+const $vAgregarRuta = document.getElementById('agregar-ruta');
 
+const $tarjetasRutas = document.getElementById('lista-rutas');
+
+const $formAgregarRuta = document.getElementById('form-agregar-ruta');
+
+//Formulario Rutas
+let $nombreRuta = document.getElementById('nombre-ruta');
+let $valorTRuta = document.getElementById('valorT-ruta');
+let $origenRuta = document.getElementById('origen-ruta');
+let $destinoRuta = document.getElementById('destino-ruta');
+let $puntosRuta = document.getAnimations('puntos-ruta');
+
+$botonRutas.addEventListener('click',function(){
+    $main.style.display='none';
+    $mRutas.style.display='flex';
+});
+
+$bAgregarRuta.addEventListener('click',function(){
+    $mRutas.style.filter='blur(5px)';
+    $vAgregarRuta.style.display='flex';
+});
+const $volverRutas = document.getElementById('b-volver-ruta');
+
+$volverRutas.addEventListener('click',function(){
+    $vAgregarRuta.style.display='none';
+    $mRutas.style.filter='none';
+});
+
+//Formulario agregar Rutas
+$formAgregarRuta.addEventListener('submit',function(e){
+    e.preventDefault(); // Evitar el envío del formulario
+    e.stopPropagation();
+
+    //Creación de objeto cliente
+    let newRuta ={};
+    newRuta.id = uuid.v1(); //ID aleatorio
+    newRuta.nombreRuta= $nombreRuta.value; 
+    newRuta.valorTiquete= $valorTRuta.value; 
+    newRuta.ciudadOrigen= $origenRuta.value; 
+    newRuta.ciudadDestino= $destinoRuta.value; 
+    newRuta.puntosRuta = $puntosRuta.value;
+    //Asignación a Rutas
+    rutas.push(newRuta);
+
+    //Función para visualizar las rutas 
+    //pendientee
+    listaRutas(rutas);
+
+    $mRutas.style.filter='none';
+    $vAgregarRuta.style.display='none';
+});
+
+//Función lista de rutas+
+function listaRutas(rutas){
+    $tarjetasRutas.innerHTML = "";
+
+    rutas.forEach(e =>{
+        let html= `<div id="${e.id}" class="tarjetaRuta">
+                <h4>${e.nombreRuta}</h4>
+                <img src="img/ruta.png" alt="destino" class="img">
+                <p><b>Ciudad de origen: </b>${e.ciudadOrigen}</p>
+                <p><b>Ciudad de destino:</b> ${e.ciudadDestino}</p>
+                <p>$${e.valorTiquete}</p>
+                <div class="estrella"><img src="img/estrella2.png" alt="Puntos" class="img-puntos"></div>
+                <p><b>Puntos:</b>${e.puntosRuta}</p>
+                
+                <button class="eliminarRuta">
+                    <img src="img/eliminar.png" alt="eliminar" class="imgBorrarRuta">
+                </button>
+            </div>`
+        console.log(html);
+        $tarjetasRutas.insertAdjacentHTML("beforeend", html);
+
+    });
+
+
+}
 
