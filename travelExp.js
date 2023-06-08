@@ -1,13 +1,13 @@
 //Objetos
 let clientes = [
     {
-    id: 55555555,
-    nombre: 'Mario', 
-    apellidos: 'Casas Orozco',
-    telefono:3001234578, 
-    email: 'mario@gmail.com',
-    fechaNac: '14/06/2000',
-    nacionalidad: 'Español'},
+        id: 55555555,
+        nombre: 'Mario', 
+        apellidos: 'Casas Orozco',
+        telefono:3001234578, 
+        email: 'mario@gmail.com',
+        fechaNac: '14/06/2000',
+        nacionalidad: 'Español'},
 
     {
         id: 987654321,
@@ -28,10 +28,20 @@ let clientes = [
         nacionalidad: 'Colombia'}
 
 ];
-//Contendedores
+
+let rutas = [
+    {
+        id:12345,
+        valorTiquete: 125000,
+        ciudadOrigen: 'Bucaramanga',
+        ciudadDestino: 'Bogotá',
+        puntos: 50,
+        nombreRuta: 'Bucaramanga-Bogotá'
+    }
+];
+//INICIO
 const $main = document.getElementById('main-modulos');
 //// Botones
-const $botonRutas = document.getElementById('rutas');
 const $botonCompraTiquete = document.getElementById('compra-tiquetes');
 const $botonPuntos = document.getElementById('puntos');
 ///CLIENTES
@@ -248,4 +258,9 @@ document.addEventListener('click',function(event){
         
     }
 });
+
+//RUTAS
+const $botonRutas = document.getElementById('rutas');
+const $mRutas = document.getElementById('modulo-rutas');
+
 

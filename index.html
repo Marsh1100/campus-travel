@@ -55,12 +55,12 @@
         </div>
     </main>
 
-
+    <!--MODULO CLIENTES (CRUD)-->
     <div id="modulo-clientes" class="moduloClientes hidden">
         <h2>Clientes</h2>
         <div class="buscar">
             <button type="button" class="btn btn-outline-primary" id="b-agregar-cliente">Agregar+</button>
-            <form id="b-buscar-cliente"class="d-flex" role="search">
+            <form id="b-buscar-cliente" class="d-flex" role="search">
                 <label for="buscar">Buscar:</label>
                 <input class="form-control me-2" type="search" aria-label="Search" id="buscar">
                 <button form="b-buscar-cliente" class="btn btn-outline-success" type="submit">Search</button>
@@ -121,13 +121,13 @@
                 </tbody>
             </table>
         </div>
-
-    </div> <!--moduloClientes-->
+    </div> 
     <!--Botones modulo Clientes-->
     <div id="agregar-cliente" class="agregarCliente moduloClientes hidden">
         <form id="form-agregar-cliente" class="form" data-bs-theme="dark">
             <h4>Nuevo cliente</h4>
-            <button id="b-volver-cliente" type="button" class="btn-close" aria-label="Close" style="color: white;"></button>
+            <button id="b-volver-cliente" type="button" class="btn-close" aria-label="Close"
+                style="color: white;"></button>
 
             <label for="id">Número de identificación:</label>
             <input type="number" id="id" required>
@@ -150,7 +150,7 @@
             <label for="nacionalidad">Nacionalidad:</label>
             <input type="text" id="nacionalidad" required>
 
-            <button id="b-guardar-cliente"form="form-agregar-cliente" class="btn btn-success" type="submit"
+            <button id="b-guardar-cliente" form="form-agregar-cliente" class="btn btn-success" type="submit"
                 style="grid-column-start: 1; grid-column-end: 3; margin: auto;">Guardar</button>
         </form>
     </div>
@@ -158,7 +158,8 @@
     <div id="editar-cliente" class="editarCliente moduloClientes hidden">
         <form id="form-editar-cliente" class="form" data-bs-theme="dark">
             <h4>Editar cliente</h4>
-            <button id="b-volver-cliente2" type="button" class="btn-close" aria-label="Close" style="color: white;"></button>
+            <button id="b-volver-cliente2" type="button" class="btn-close" aria-label="Close"
+                style="color: white;"></button>
 
             <label for="idE">Número de identificación:</label>
             <input type="number" id="idE" readonly>
@@ -181,11 +182,31 @@
             <label for="nacionalidadE">Nacionalidad:</label>
             <input type="text" id="nacionalidadE" required>
 
-            <button id="b-guardar-cliente"form="form-editar-cliente" class="btn btn-warning" type="submit"
+            <button id="b-guardar-cliente" form="form-editar-cliente" class="btn btn-warning" type="submit"
                 style="color: white;grid-column-start: 1; grid-column-end: 3; margin: auto;">Editar</button>
         </form>
     </div>
+    <!--MODULO RUTAS-->
+    <div id="modulo-rutas" class="moduloRutas">
+        <h2>Rutas</h2>
+        <div class="contedorBotonRutas">
+            <button type="button" class="btn btn-outline-primary" id="b-agregar-ruta">Agregar+</button>
+        </div>
+        <div id="lista-rutas"class="rutas">
+            <div id="1" class="tarjetaRuta">
+                <h4>Bucaramanga-Bogotá</h4>
+                <img src="ruta.png">
+                <p><b>Ciudad de origen: </b>Bucarmanga</p>
+                <p><b>Ciudad de destino:</b> Bogotá</p>
 
+                <div class="puntos">
+                    <p><b>Puntos:</b>30</p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
 
     <!--JavaScript-->
     <script src="travelExp.js"></script>
