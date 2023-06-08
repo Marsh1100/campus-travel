@@ -60,15 +60,15 @@
         <h2>Clientes</h2>
         <div class="buscar">
             <button type="button" class="btn btn-outline-primary" id="b-agregar-cliente">Agregar+</button>
-            <form class="d-flex" role="search">
+            <form id="b-buscar-cliente"class="d-flex" role="search">
                 <label for="buscar">Buscar:</label>
                 <input class="form-control me-2" type="search" aria-label="Search" id="buscar">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <button form="b-buscar-cliente" class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>
 
         <div class="scroll">
-            <table class="table table-striped">
+            <table class="table table">
                 <thead>
                     <tr>
                         <th scope="col" style="color: darkblue;">ID</th>
@@ -92,15 +92,15 @@
                         <td>jp@gmail.com</td>
                         <td>12/04/1997</td>
                         <td>Colombia</td>
-                        <td class="editDelete">
+                        <td class="">
                             <button type="button" class="btn btn-warning bi bi-pencil-square"
                                 style="color: rgb(255, 255, 255);"></button>
-                            <button type="button" class="btn btn-danger bi  bi-trash"></button>
+                            <button type="button" class="btn btn-danger bi bi-trash"></button>
                         </td>
                     </tr>
 
                     <tr id="2">
-                        <th scope="row">1</th>
+                        <th scope="row">2</th>
                         <td>100725564</td>
                         <td>Camilo Andres</td>
                         <td>Figueroa Rojas</td>
@@ -125,8 +125,10 @@
     </div> <!--moduloClientes-->
     <!--Botones modulo Clientes-->
     <div id="agregar-cliente" class="agregarCliente moduloClientes hidden">
-        <form id="form-agregar-cliente" class="form">
-            <h4 style="grid-column-start: 1; grid-column-end: 3; margin: auto;">Nuevo cliente</h4>
+        <form id="form-agregar-cliente" class="form" data-bs-theme="dark">
+            <h4>Nuevo cliente</h4>
+            <button id="b-volver-cliente" type="button" class="btn-close" aria-label="Close" style="color: white;"></button>
+
             <label for="id">Número de identificación:</label>
             <input type="number" id="id" required>
 
@@ -148,11 +150,40 @@
             <label for="nacionalidad">Nacionalidad:</label>
             <input type="text" id="nacionalidad" required>
 
-            <button id="form-agregar-cliente" class="btn btn-success" type="submit"
+            <button id="b-guardar-cliente"form="form-agregar-cliente" class="btn btn-success" type="submit"
                 style="grid-column-start: 1; grid-column-end: 3; margin: auto;">Guardar</button>
-
         </form>
+    </div>
+    <!--Editar Cliente-->
+    <div id="editar-cliente" class="editarCliente moduloClientes hidden">
+        <form id="form-editar-cliente" class="form" data-bs-theme="dark">
+            <h4>Editar cliente</h4>
+            <button id="b-volver-cliente2" type="button" class="btn-close" aria-label="Close" style="color: white;"></button>
 
+            <label for="idE">Número de identificación:</label>
+            <input type="number" id="idE" readonly>
+
+            <label for="nombreE">Nombre: </label>
+            <input type="text" id="nombreE" required>
+
+            <label for="apellidosE">Apellidos:</label>
+            <input type="text" id="apellidosE" required>
+
+            <label for="telefonoE">Teléfono:</label>
+            <input type="number" id="telefonoE" required>
+
+            <label for="emailE">Email:</label>
+            <input type="email" id="emailE" required>
+
+            <label for="fechaNacE">Fecha de nacimiento:</label>
+            <input type="text" id="fechaNacE" required>
+
+            <label for="nacionalidadE">Nacionalidad:</label>
+            <input type="text" id="nacionalidadE" required>
+
+            <button id="b-guardar-cliente"form="form-editar-cliente" class="btn btn-warning" type="submit"
+                style="color: white;grid-column-start: 1; grid-column-end: 3; margin: auto;">Editar</button>
+        </form>
     </div>
 
 
