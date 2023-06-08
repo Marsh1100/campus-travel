@@ -109,13 +109,11 @@
                         <td>12/04/1997</td>
                         <td>Colombia</td>
                         <td class="editDelete">
-                            <figure title="Editar" tooltip-dir="top">
-                                <button type="button" class="btn btn-warning bi bi-pencil-square"
-                                    style="color: rgb(255, 255, 255);"></button>
-                            </figure>
-                            <figure title="Eliminar" tooltip-dir="top">
-                                <button type="button" class="btn btn-danger bi  bi-trash"></button>
-                            </figure>
+                            
+                            <button type="button" class="btn btn-warning bi bi-pencil-square"
+                                style="color: rgb(255, 255, 255);"></button>
+                            <button type="button" class="btn btn-danger bi  bi-trash"></button>
+                            
                         </td>
                     </tr>
                 </tbody>
@@ -187,7 +185,7 @@
         </form>
     </div>
     <!--MODULO RUTAS-->
-    <div id="modulo-rutas" class="moduloRutas">
+    <div id="modulo-rutas" class="moduloRutas hidden">
         <h2>Rutas</h2>
         <div class="contedorBotonRutas">
             <button type="button" class="btn btn-outline-primary" id="b-agregar-ruta">Agregar+</button>
@@ -195,21 +193,64 @@
         <div id="lista-rutas"class="rutas">
             <div id="1" class="tarjetaRuta">
                 <h4>Bucaramanga-Bogotá</h4>
-                <img src="ruta.png">
+                <img src="img/ruta.png" alt="destino" class="img">
                 <p><b>Ciudad de origen: </b>Bucarmanga</p>
                 <p><b>Ciudad de destino:</b> Bogotá</p>
-
-                <div class="puntos">
-                    <p><b>Puntos:</b>30</p>
-                </div>
-
+                <p>$125.000</p>
+                <div class="estrella"><img src="img/estrella2.png" alt="Puntos" class="img-puntos"></div>
+                <p><b>Puntos:</b>30</p>
+                
+                <button class="eliminarRuta">
+                    <img src="img/eliminar.png" alt="eliminar" class="imgBorrarRuta">
+                </button>
             </div>
-        </div>
 
+            <div id="2" class="tarjetaRuta">
+                <h4>Bucaramanga-Bogotá</h4>
+                <img src="img/ruta.png" alt="Puntos" class="img">
+                <p><b>Ciudad de origen: </b>Bucarmanga</p>
+                <p><b>Ciudad de destino:</b> Bogotá</p>
+                <p>$125.000</p>
+                <div class="estrella"><img src="img/estrella2.png" alt="Puntos" class="img-puntos"></div>
+                <p><b>Puntos:</b>30</p>
+                
+                <button class="eliminarRuta">
+                    <img src="img/eliminar.png" alt="eliminar" class="imgBorrarRuta">
+                </button>
+            </div>
+        </div>    
+    </div>
+     <!--Formulario Agregar Ruta-->
+     <div id="agregar-ruta" class="agregarRuta hidden">
+        <form id="form-agregar-ruta" class="form" data-bs-theme="dark">
+            <h4>Agregar Ruta</h4>
+            <button id="b-volver-ruta" type="button" class="btn-close" aria-label="Close"
+                style="color: white;"></button>
+
+            <label for="nombre-ruta">Nombre de la ruta:</label>
+            <input type="text" id="nombre-ruta" required>
+
+            <label for="valorT-ruta">Valor Tiquete:</label>
+            <input type="number" id="valorT-ruta">
+
+            <label for="origen-ruta">Ciudad de Origen:</label>
+            <input type="text" id="origen-ruta">
+
+            <label for="destino-ruta">Ciudad de Destino:</label>
+            <input type="text" id="destino-ruta">
+
+            <label for="puntos-ruta">Puntos por fidelización:</label>
+            <input type="number" id="puntos-ruta">
+
+            <button id="b-guardar-ruta" form="form-agregar-ruta" class="btn btn-success" type="submit"
+                style="color: white;grid-column-start: 1; grid-column-end: 3; margin: auto;">Guardar</button>
+        </form>
     </div>
 
     <!--JavaScript-->
     <script src="travelExp.js"></script>
+    <!--Libreria para generar ID unicos-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/node-uuid/1.4.7/uuid.min.js"></script>
     <!--Bootstrap-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
