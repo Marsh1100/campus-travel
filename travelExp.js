@@ -7,7 +7,8 @@ let clientes = [
         telefono:3001234578, 
         email: 'mario@gmail.com',
         fechaNac: '14/06/2000',
-        nacionalidad: 'España'},
+        nacionalidad: 'España',
+        puntos:0},
 
     {
         id: 987654321,
@@ -16,7 +17,8 @@ let clientes = [
         telefono:3001234578, 
         email: 'mario@gmail.com',
         fechaNac: '14/06/2000',
-        nacionalidad: 'Colombia'},
+        nacionalidad: 'Colombia',
+        puntos:0},
 
     {
         id: 654321987,
@@ -25,7 +27,8 @@ let clientes = [
         telefono:3001234578, 
         email: 'camila@gmail.com',
         fechaNac: '14/06/2000',
-        nacionalidad: 'Colombia'}
+        nacionalidad: 'Colombia',
+        puntos:0}
 
 ];
 
@@ -400,7 +403,7 @@ document.addEventListener('click',function(event){
 const $botonCompraTiquete = document.getElementById('compra-tiquetes');
 const $mCompras = document.getElementById('modulo-compra');
 
-const $bBuscarClienteC = document.getElementById('b-buscar-clienteC');
+let $bBuscarClienteC = document.getElementById('b-buscar-clienteC');
 ////Formulario buscar
 let $buscarC = document.getElementById('buscarC');
 const $tablaClientesC = document.getElementById('template-clientesC')
@@ -468,10 +471,27 @@ function listaClientesC(clientes){
                         <td>${e.fechaNac}</td>
                         <td>${e.nacionalidad}</td>
                         <td class="seleccionarRadio">
-                            <p><input type="radio" name="seleccionar"></p>
+                            <p><input type="radio" name="seleccionar" value="${e.id}"></p>
                         </td>
                     </tr>`
         contador +=1;
         $tablaClientesC.insertAdjacentHTML("beforeend", html);
     }
 )};
+
+const $bSeleccionarCLiente = document.getElementById('botonSeleccionar');
+//Seleccionar cliente para la compra
+console.log("HOLA")
+$bSeleccionarCLiente.addEventListener('click',function(e){
+    e.preventDefault(); // Evitar el envío del formulario
+    e.stopPropagation();
+
+    let prueba = document.getElementsByName('seleccionar');
+   	for (var i = 0; i < prueba.length; i++){ 
+      	if (prueba[i].checked) {
+         	break; 
+ 		}
+   	}
+    
+   console.log(prueba[i].value);
+});
