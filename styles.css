@@ -17,6 +17,9 @@ nav{
     padding: 20px;
     align-content: center;
 }
+h2,h3{
+    text-align: center;
+}
 p{
     margin-top: auto;
     margin-bottom: auto;
@@ -62,13 +65,8 @@ p{
 
 /*Modulo clientes*/
 .moduloClientes{
-    margin:auto;
-    width: 80%;
-
     display: flex;
     flex-direction: column;
-    align-items: center;
-
 }
 
 @media (max-width: 945px){
@@ -100,7 +98,7 @@ p{
 /*Agregar cliente + Agregar Ruta*/
 .agregarCliente, .editarCliente, .agregarRuta{
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
 
@@ -196,9 +194,15 @@ input{
     display: flex;
     flex-direction: column;
 }
-
-
+.seleccion{
+    display: flex;
+    justify-content: space-around;
+}
+.seleccionar{
+    width: 150px;
+}
 .hidden{
     display: none;
 }
+
 
