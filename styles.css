@@ -143,13 +143,14 @@ input{
 
 /*MODULO RUTAS*/
 .moduloRutas{
+    padding-top: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .rutas{
-
+    padding-top: 40px;
     width: 80%;
     display: flex;
     flex-wrap: wrap;
@@ -160,6 +161,7 @@ input{
     color: white;
     background: #02aef1;
     width: 250px;
+    height: 500px;
     border-radius: 15px;
     padding: 15px;;
 
@@ -187,9 +189,16 @@ input{
     background-color: transparent;
     border: none;
 }
-.hidden{
-    display: none;
+
+/*MÓDULO COMPRA*/
+
+.moduloCompra{
+    display: flex;
+    flex-direction: column;
 }
 
 
+.hidden{
+    display: none;
+}
 

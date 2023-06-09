@@ -2,16 +2,16 @@
 let clientes = [
     {
         id: 55555555,
-        nombre: 'Mario', 
+        nombre: 'Mariana', 
         apellidos: 'Casas Orozco',
         telefono:3001234578, 
         email: 'mario@gmail.com',
         fechaNac: '14/06/2000',
-        nacionalidad: 'Español'},
+        nacionalidad: 'España'},
 
     {
         id: 987654321,
-        nombre: 'Mario Noel', 
+        nombre: 'Javier Noel', 
         apellidos: 'Páez',
         telefono:3001234578, 
         email: 'mario@gmail.com',
@@ -45,13 +45,43 @@ let rutas = [
         ciudadDestino: 'Cartagena',
         valorTiquete: 200000,
         puntosRuta: 80,
+    },
+    {
+        id:142345,
+        nombreRuta: 'Bucaramanga-Barranquilla',
+        ciudadOrigen: 'Bucaramanga',
+        ciudadDestino: 'Barranquilla',
+        valorTiquete: 125000,
+        puntosRuta: 90,
+    },
+    {
+        id:456536789,
+        nombreRuta: 'Bucaramanga-Tunja',
+        ciudadOrigen: 'Bucaramanga',
+        ciudadDestino: 'Tunja',
+        valorTiquete: 200000,
+        puntosRuta: 60,
+    },
+    {
+        id:142345,
+        nombreRuta: 'Bucaramanga-Barranquilla',
+        ciudadOrigen: 'Bucaramanga',
+        ciudadDestino: 'Barranquilla',
+        valorTiquete: 125000,
+        puntosRuta: 90,
+    },
+    {
+        id:456536789,
+        nombreRuta: 'Bucaramanga-Tunja',
+        ciudadOrigen: 'Bucaramanga',
+        ciudadDestino: 'Tunja',
+        valorTiquete: 200000,
+        puntosRuta: 60,
     }
-
 ];
 //INICIO
 const $main = document.getElementById('main-modulos');
 //// Botones
-const $botonCompraTiquete = document.getElementById('compra-tiquetes');
 const $botonPuntos = document.getElementById('puntos');
 ///CLIENTES
 const $botonClientes = document.getElementById('clientes');
@@ -146,7 +176,7 @@ $bBuscarCliente.addEventListener('submit',function(e){
             imageUrl: 'https://cdn-icons-png.flaticon.com/512/3746/3746929.png',
             imageWidth: 200,
             imageAlt: 'Custom image',
-          })
+        })
     }
 });
 //Formulario Agregar Clientes
@@ -203,10 +233,10 @@ function listaClientes(clientes){
 document.addEventListener('click',function(event){
     try {
         if(document.getElementById(event.target.id).className == 'btn btn-danger bi bi-trash'){
+            
             let targetId = document.getElementById(event.target.id).parentNode.parentNode.id;
-
             //filter hace una copia...
-           clientes = clientes.filter(function(element){
+            clientes = clientes.filter(function(element){
                 return String(element.id) != targetId
             } );
             listaClientes(clientes)   
@@ -249,8 +279,7 @@ document.addEventListener('click',function(event){
             
             $mClientes.style.filter='blur(5px)';
             $vEditarCliente.style.display='flex';
-      
-            //No debería dejar editar la cédula... 
+
             clientes.forEach(function(element){
                 if(targetId == String(element.id)){
                     $documentoE.value = element.id;
@@ -283,11 +312,13 @@ let $nombreRuta = document.getElementById('nombre-ruta');
 let $valorTRuta = document.getElementById('valorT-ruta');
 let $origenRuta = document.getElementById('origen-ruta');
 let $destinoRuta = document.getElementById('destino-ruta');
-let $puntosRuta = document.getAnimations('puntos-ruta');
+let $puntosRuta = document.getElementById('puntos-ruta');
 
 $botonRutas.addEventListener('click',function(){
     $main.style.display='none';
     $mRutas.style.display='flex';
+
+    listaRutas(rutas);
 });
 
 $bAgregarRuta.addEventListener('click',function(){
@@ -338,16 +369,109 @@ function listaRutas(rutas){
                 <p>$${e.valorTiquete}</p>
                 <div class="estrella"><img src="img/estrella2.png" alt="Puntos" class="img-puntos"></div>
                 <p><b>Puntos:</b>${e.puntosRuta}</p>
-                
                 <button class="eliminarRuta">
-                    <img src="img/eliminar.png" alt="eliminar" class="imgBorrarRuta">
+                    <img src="img/eliminar.png" alt="eliminar" class="imgBorrarRuta" id="D${e.id}">
                 </button>
             </div>`
-        console.log(html);
         $tarjetasRutas.insertAdjacentHTML("beforeend", html);
 
     });
-
-
 }
 
+//Función eliminar-ruta
+document.addEventListener('click',function(event){
+    
+    try {
+        if(document.getElementById(event.target.id).className == 'imgBorrarRuta'){
+            
+            let targetId = document.getElementById(event.target.id).parentNode.parentNode.id;
+            rutas = rutas.filter(function(element){
+                return element.id != targetId
+            });
+            listaRutas(rutas);
+        }
+    } catch (error) {
+        
+    }
+    
+});
+
+//MODULO-COMPRA TIQUETES
+const $botonCompraTiquete = document.getElementById('compra-tiquetes');
+const $mCompras = document.getElementById('modulo-compra');
+
+const $bBuscarClienteC = document.getElementById('b-buscar-clienteC');
+////Formulario buscar
+let $buscarC = document.getElementById('buscarC');
+const $tablaClientesC = document.getElementById('template-clientesC')
+
+
+$botonCompraTiquete.addEventListener('click',function(){
+    $main.style.display='none';
+    $mCompras.style.display='flex';
+
+    listaClientesC(clientes);
+
+});
+
+
+//Buscar clientes compra
+//Buscar clientes
+$bBuscarClienteC.addEventListener('submit',function(e){
+    e.preventDefault(); // Evitar el envío del formulario
+    e.stopPropagation();
+
+    let listaBuscar = [];
+    let clienteBuscar = $buscarC.value.toUpperCase();
+    console.log(clienteBuscar)
+
+    if(clienteBuscar==''){
+        listaClientesC(clientes);
+        return
+    }
+    //Se recorre la lista de clientes buscando coincidencias 
+    clientes.forEach(function(e){
+        let nombre = e.nombre.toUpperCase();
+        let apellidos = e.apellidos.toUpperCase();
+        let id = e.id;
+        console.log(id)
+
+        if(nombre.includes(clienteBuscar) || apellidos.includes(clienteBuscar)|| String(id).includes(clienteBuscar)){
+            listaBuscar.push(e)
+        }
+    });
+
+    if(listaBuscar.length>0){
+        listaClientesC(listaBuscar);
+    }else{
+        Swal.fire({
+            //title: 'Sweet!',
+            text: 'No hay coincidencias para su busqueda...',
+            imageUrl: 'https://cdn-icons-png.flaticon.com/512/3746/3746929.png',
+            imageWidth: 200,
+            imageAlt: 'Custom image',
+        })
+    }
+});
+
+function listaClientesC(clientes){
+    $tablaClientesC.innerHTML="";
+    let contador = 1;
+    clientes.forEach(e => {
+        let html =`<tr id="${e.id}">
+                        <th scope="row">${contador}</th>
+                        <td>${e.id}</td>
+                        <td>${e.nombre}</td>
+                        <td>${e.apellidos}</td>
+                        <td>${e.telefono}</td>
+                        <td>${e.email}</td>
+                        <td>${e.fechaNac}</td>
+                        <td>${e.nacionalidad}</td>
+                        <td class="seleccionarRadio">
+                            <p><input type="radio" name="seleccionar"></p>
+                        </td>
+                    </tr>`
+        contador +=1;
+        $tablaClientesC.insertAdjacentHTML("beforeend", html);
+    }
+)};
