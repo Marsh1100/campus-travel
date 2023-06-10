@@ -35,7 +35,6 @@ p{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    align-content: center;
     margin: auto;
     gap: 20px;
 }
@@ -80,10 +79,7 @@ p{
     justify-content: space-around;
     gap: 15px;
 }
-.d-flex{
-    display: flex;
-    align-items: center;
-}
+
 .scroll{
     overflow-x: scroll; 
 }

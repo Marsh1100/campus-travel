@@ -213,7 +213,7 @@ function listaClientes(clientes){
     $tablaClientes.innerHTML="";
     let contador = 1;
     clientes.forEach(e => {
-        let html =`<tr id="${e.id}">
+        let html =`<tr>
                         <th scope="row">${contador}</th>
                         <td>${e.id}</td>
                         <td>${e.nombre}</td>
@@ -223,8 +223,8 @@ function listaClientes(clientes){
                         <td>${e.fechaNac}</td>
                         <td>${e.nacionalidad}</td>
                         <td class="editDelete">
-                            <button id="E${e.id}" type="button" class="btn btn-warning bi bi-pencil-square" style="color: rgb(255, 255, 255);"></button>
-                            <button id="D${e.id}" type="button" class="btn btn-danger bi bi-trash"></button>
+                            <button id="D${e.id}" type="button" class="btn btn-warning bi bi-pencil-square" style="color: rgb(255, 255, 255);"></button>
+                            <button id="${e.id}" type="button" class="btn btn-danger bi bi-trash"></button>
                         </td>
                     </tr>`
         contador +=1;
@@ -234,19 +234,26 @@ function listaClientes(clientes){
 
 //Función eliminar
 document.addEventListener('click',function(event){
-    try {
-        if(document.getElementById(event.target.id).className == 'btn btn-danger bi bi-trash'){
-            
-            let targetId = document.getElementById(event.target.id).parentNode.parentNode.id;
-            //filter hace una copia...
-            clientes = clientes.filter(function(element){
+
+    let targetId=event.target.id
+    clientes = clientes.filter(function(element){
                 return String(element.id) != targetId
-            } );
-            listaClientes(clientes)   
-        }
-    } catch (error) {
+                } );
+    listaClientes(clientes)   
+    
+    // try {
+    //     if(document.getElementById(event.target.id).className == 'btn btn-danger bi bi-trash'){
+            
+    //         let targetId = document.getElementById(event.target.id).parentNode.parentNode.id;
+    //         //filter hace una copia...
+    //         clientes = clientes.filter(function(element){
+    //             return String(element.id) != targetId
+    //         } );
+    //         listaClientes(clientes)   
+    //     }
+    // } catch (error) {
         
-    }
+    // }
 });
 
 //Formulario Editar clientes
@@ -409,6 +416,11 @@ let $buscarC = document.getElementById('buscarC');
 const $tablaClientesC = document.getElementById('template-clientesC')
 
 
+//Seleccionar radio
+const $bSeleccionarCLiente = document.getElementById('botonSeleccionar');
+
+const $vCompraCliente =document.getElementById('cliente-compra');
+
 $botonCompraTiquete.addEventListener('click',function(){
     $main.style.display='none';
     $mCompras.style.display='flex';
@@ -479,19 +491,24 @@ function listaClientesC(clientes){
     }
 )};
 
-const $bSeleccionarCLiente = document.getElementById('botonSeleccionar');
 //Seleccionar cliente para la compra
-console.log("HOLA")
 $bSeleccionarCLiente.addEventListener('click',function(e){
     e.preventDefault(); // Evitar el envío del formulario
     e.stopPropagation();
 
-    let prueba = document.getElementsByName('seleccionar');
-   	for (var i = 0; i < prueba.length; i++){ 
-      	if (prueba[i].checked) {
+    let clientesId = document.getElementsByName('seleccionar');
+   	for (var i = 0; i < clientesId.length; i++){ 
+      	if (clientesId[i].checked) {
          	break; 
  		}
-   	}
-    
-   console.log(prueba[i].value);
+   	}    
+   let clienteId =clientesId[i].value;
+   let clienteComprar = document.createElement("p");
+   let texto = document.createTextNode(`${clienteId}`);
+   clienteComprar.appendChild(texto)
+   document.appendChild($vCompraCliente);
 });
+
+//
+
+
