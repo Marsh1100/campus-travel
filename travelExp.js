@@ -38,7 +38,7 @@ let rutas = [
         nombreRuta: 'Bucaramanga-Bogotá',
         ciudadOrigen: 'Bucaramanga',
         ciudadDestino: 'Bogotá',
-        valorTiquete: 125000,
+        valorTiquete: 125965,
         puntosRuta: 50,
     },
     {
@@ -46,7 +46,7 @@ let rutas = [
         nombreRuta: 'Bucaramanga-Cartagena',
         ciudadOrigen: 'Bucaramanga',
         ciudadDestino: 'Cartagena',
-        valorTiquete: 200000,
+        valorTiquete: 100000,
         puntosRuta: 80,
     },
     {
@@ -54,36 +54,14 @@ let rutas = [
         nombreRuta: 'Bucaramanga-Barranquilla',
         ciudadOrigen: 'Bucaramanga',
         ciudadDestino: 'Barranquilla',
-        valorTiquete: 125000,
+        valorTiquete: 350000,
         puntosRuta: 90,
-    },
-    {
-        id:456536789,
-        nombreRuta: 'Bucaramanga-Tunja',
-        ciudadOrigen: 'Bucaramanga',
-        ciudadDestino: 'Tunja',
-        valorTiquete: 200000,
-        puntosRuta: 60,
-    },
-    {
-        id:142345,
-        nombreRuta: 'Bucaramanga-Barranquilla',
-        ciudadOrigen: 'Bucaramanga',
-        ciudadDestino: 'Barranquilla',
-        valorTiquete: 125000,
-        puntosRuta: 90,
-    },
-    {
-        id:456536789,
-        nombreRuta: 'Bucaramanga-Tunja',
-        ciudadOrigen: 'Bucaramanga',
-        ciudadDestino: 'Tunja',
-        valorTiquete: 200000,
-        puntosRuta: 60,
     }
 ];
 //INICIO
 const $main = document.getElementById('main-modulos');
+const $inicio = document.getElementById('inicio');
+
 //// Botones
 const $botonPuntos = document.getElementById('puntos');
 ///CLIENTES
@@ -124,6 +102,15 @@ let $formClientesE = document.getElementById('form-editar-cliente') //formulario
 const $volverClientesA = document.getElementById('b-volver-cliente');
 const $volverClientesE = document.getElementById('b-volver-cliente2');
 
+$inicio.addEventListener('click',function(){
+    
+    $mClientes.style.display='none';
+    $mRutas.style.display='none';
+    $mCompras.style.display='none';
+    $main.style.display='flex';
+
+
+});
 $volverClientesA.addEventListener('click',function(){
     $mClientes.style.filter='none';
     $vAgregarCliente.style.display='none';   
@@ -188,13 +175,14 @@ $formClientesA.addEventListener('submit',function(e){
     e.stopPropagation();
     //Creación de objeto cliente
     let newCliente ={};
-    newCliente.id= $documento.value; 
+    newCliente.id= Number($documento.value); 
     newCliente.nombre= $nombre.value; 
     newCliente.apellidos= $apellidos.value; 
     newCliente.telefono= $telefono.value; 
     newCliente.email= $email.value; 
     newCliente.fechaNac= $fechaNac.value; 
     newCliente.nacionalidad= $nacionalidad.value; 
+    newCliente.puntos = 0;
     console.log(newCliente);
     
     //Asignación a clientes
@@ -206,6 +194,9 @@ $formClientesA.addEventListener('submit',function(e){
 
     $mClientes.style.filter='none';
     $vAgregarCliente.style.display='none';
+
+    $formClientesA.reset();
+
 });
 
 //Función lista de clientes
@@ -280,6 +271,8 @@ $formClientesE.addEventListener('submit',function(e){
     $mClientes.style.filter='none';
     $vEditarCliente.style.display='none';
 
+    $formClientesE.reset;
+
 });
 //Función editar
 document.addEventListener('click',function(event){
@@ -351,10 +344,10 @@ $formAgregarRuta.addEventListener('submit',function(e){
     let newRuta ={};
     newRuta.id = uuid.v1(); //ID aleatorio
     newRuta.nombreRuta= $nombreRuta.value; 
-    newRuta.valorTiquete= $valorTRuta.value; 
+    newRuta.valorTiquete= Number($valorTRuta.value); 
     newRuta.ciudadOrigen= $origenRuta.value; 
     newRuta.ciudadDestino= $destinoRuta.value; 
-    newRuta.puntosRuta = $puntosRuta.value;
+    newRuta.puntosRuta = Number($puntosRuta.value);
     //Asignación a Rutas
     rutas.push(newRuta);
 
@@ -364,6 +357,8 @@ $formAgregarRuta.addEventListener('submit',function(e){
 
     $mRutas.style.filter='none';
     $vAgregarRuta.style.display='none';
+
+    $formAgregarRuta.reset;
 });
 
 //Función lista de rutas+
@@ -371,7 +366,7 @@ function listaRutas(rutas){
     $tarjetasRutas.innerHTML = "";
 
     rutas.forEach(e =>{
-        let html= `<div id="${e.id}" class="tarjetaRuta">
+        let html= `<div id="T${e.id}" class="tarjetaRuta">
                 <h4>${e.nombreRuta}</h4>
                 <img src="img/ruta.png" alt="destino" class="img">
                 <p><b>Ciudad de origen: </b>${e.ciudadOrigen}</p>
@@ -409,6 +404,7 @@ document.addEventListener('click',function(event){
 //MODULO-COMPRA TIQUETES
 const $botonCompraTiquete = document.getElementById('compra-tiquetes');
 const $mCompras = document.getElementById('modulo-compra');
+const $comprar = document.getElementById('cliente-seleccionado');
 
 let $bBuscarClienteC = document.getElementById('b-buscar-clienteC');
 ////Formulario buscar
@@ -420,6 +416,7 @@ const $tablaClientesC = document.getElementById('template-clientesC')
 const $bSeleccionarCLiente = document.getElementById('botonSeleccionar');
 
 const $vCompraCliente =document.getElementById('cliente-compra');
+const $botonConfirmarCompra = document.getElementById('btn-comprar-tiquete');
 
 $botonCompraTiquete.addEventListener('click',function(){
     $main.style.display='none';
@@ -429,11 +426,14 @@ $botonCompraTiquete.addEventListener('click',function(){
 
 });
 
+//Rutas
+$seleccionarRuta = document.getElementById('seleccionarRuta');
+//Precio
+
 
 //Buscar clientes compra
-//Buscar clientes
 $bBuscarClienteC.addEventListener('submit',function(e){
-    e.preventDefault(); // Evitar el envío del formulario
+    e.preventDefault(); // 
     e.stopPropagation();
 
     let listaBuscar = [];
@@ -491,24 +491,144 @@ function listaClientesC(clientes){
     }
 )};
 
-//Seleccionar cliente para la compra
-$bSeleccionarCLiente.addEventListener('click',function(e){
-    e.preventDefault(); // Evitar el envío del formulario
-    e.stopPropagation();
+//Llenar dinámicamente el select de la ruta
+function rutasSelector(){
+    $seleccionarRuta.innerHTML = '<option selected>Seleccionar ruta</option>';
+    rutas.forEach(opcionRuta =>{
+        const opcion = document.createElement('option');
+        opcion.value = opcionRuta.nombreRuta;
+        opcion.textContent = opcionRuta.nombreRuta ;
+    
+        $seleccionarRuta.appendChild(opcion);
+    })
+}
 
-    let clientesId = document.getElementsByName('seleccionar');
-   	for (var i = 0; i < clientesId.length; i++){ 
-      	if (clientesId[i].checked) {
-         	break; 
- 		}
-   	}    
-   let clienteId =clientesId[i].value;
-   let clienteComprar = document.createElement("p");
-   let texto = document.createTextNode(`${clienteId}`);
-   clienteComprar.appendChild(texto)
-   document.appendChild($vCompraCliente);
+
+//Seleccionar ruta
+$seleccionarRuta.addEventListener('input', function(e){
+    let ruta=e.target.value;
+    if(ruta != 'Seleccionar ruta'){
+        rutas.forEach(function(e){
+            if(e.nombreRuta == ruta){
+                console.log(e.id);
+                console.log(e.nombreRuta);
+                let costoRuta = e.valorTiquete;
+                let iva = costoRuta*0.16;
+                let tasaAeroportuaria = costoRuta*0.04;
+                let total = costoRuta+iva+tasaAeroportuaria;
+
+                let html = ` <p><b>Costo ruta: $</b>${costoRuta}</p>
+                <p><b>IVA: $</b>${iva}</p>
+                <p><b>Tasa aeroportuaria: $</b>${tasaAeroportuaria}</p>
+                <p><b>TOTAL: $</b>${total}</p>
+                <button id="${e.id}"type="button" class="btn btn-primary confirmar" type="submit">Confirmar compra</button>`;
+                document.getElementById('costos-impuestos').innerHTML = html;
+                return
+            }
+        });
+    }else{
+        let html = ` <p><b>Costo ruta: $</b></p>
+                <p><b>IVA: $</b></p>
+                <p><b>Tasa aeroportuaria: $</b></p>
+                <p><b>TOTAL: </p>`;
+        document.getElementById('costos-impuestos').innerHTML = html;
+    }
+    
+
 });
 
-//
+function obtenerIdCliente(){
+    let clientesId = document.getElementsByName('seleccionar');
+    for (var i = 0; i < clientesId.length; i++){ 
+       if (clientesId[i].checked) {
+          break; 
+      }
+    }
+    if(clientesId.length != i){
+        return  clientesId[i].value;
+
+    }else{
+        Swal.fire({
+            //title: 'Sweet!',
+            text: 'Por favor selecciona un cliente',
+        })
+        return
+    }
+}
+
+
+//Seleccionar cliente para la compra
+$bSeleccionarCLiente.addEventListener('click',function(e){
+    e.preventDefault(); // 
+    e.stopPropagation();
+    
+    rutasSelector()
+    let clienteId = obtenerIdCliente();
+
+    //Coincidencia del id
+    clientes.forEach(function(e){
+            if(e.id == Number(clienteId)){
+                $comprar.innerHTML = e.nombre+" "+ e.apellidos;
+                $vCompraCliente.style.display='block';
+                return
+            }
+    });
+  
+  
+   /*let clienteComprar = document.createElement("h4");
+   let texto = document.createTextNode(`${clienteId}`);
+   clienteComprar.appendChild(texto)*/
+});
+
+function unselect(){
+    document.querySelectorAll('[name=seleccionar]').forEach((x) => x.checked=false);
+  }
+
+//Confirmar compra
+document.addEventListener('click',function(event){
+    try {
+        let idRutas = event.target.id;
+        console.log(idRutas)
+        if(document.getElementById(event.target.id).className.includes('confirmar')){
+            console.log("confirmarrrrr")
+            console.log(idRutas)
+            rutas.forEach(function(e){
+                if(e.id == idRutas ){
+                    console.log('wwwwww')
+                    let puntos =  e.puntosRuta;
+                    console.log(puntos)
+                    let clienteId = obtenerIdCliente();
+
+                    clientes.forEach(function(a){
+                        if(a.id == clienteId){
+                            a.puntos+= puntos;
+                            return
+                        }
+                    });
+                    return
+                }
+            });  
+            Swal.fire({
+                text:'¡Compra realizada exitosamente!',
+                imageUrl: 'https://cdn-icons-png.flaticon.com/512/148/148767.png',
+                imageWidth: 200,
+                imageAlt: 'Custom image'
+            });
+            $vCompraCliente.style.display='none';
+            unselect();
+            rutasSelector();
+            let html = ` <p><b>Costo ruta: $</b></p>
+                <p><b>IVA: $</b></p>
+                <p><b>Tasa aeroportuaria: $</b></p>
+                <p><b>TOTAL: </p>`;
+             document.getElementById('costos-impuestos').innerHTML = html;
+
+        }    
+    } catch (error) {
+        
+    }
+   
+});
+
 
 

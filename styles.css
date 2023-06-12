@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-nav{
+ul{
     background-color: rgb(4, 4, 80);
     color: white;
     font-weight: 600;
@@ -196,6 +196,15 @@ input{
 }
 .seleccionar{
     width: 150px;
+}
+
+
+.tarjetaCompra{
+    width: 500px;
+    background-color: lightblue;
+    padding: 20px;
+    border-radius: 20px;
+    margin:auto;
 }
 .hidden{
     display: none;

@@ -19,9 +19,13 @@
 
 <body>
 
-    <nav>
-        <p>Administrador</p>
-    </nav>
+    
+    <ul class="nav nav-underline">
+        <li class="nav-item">
+            <a id='inicio'class="nav-link active" aria-current="page" type="button" style="color: white;">Inicio</a>
+        </li>
+    </ul>
+    
     <!--Modulos-->
     <main id="main-modulos" class="main">
         <div class="modulos">
@@ -306,10 +310,23 @@
             </table>
         </div>
         <div class="seleccion">
-            <button id="botonSeleccionar"type="button" class="btn btn-primary" type="submit">Realizar Compra</button>
+            <button id="botonSeleccionar"type="button" class="btn btn-primary" type="submit">Seleccionar</button>
         </div>
 
-        <div id="cliente-compra"></div>
+        <!--Nombre de rutas para seleccionar-->
+        <div id="cliente-compra" class="tarjetaCompra hidden">
+            <h4 id="cliente-seleccionado">José Gutierrez</h4>
+            <select id="seleccionarRuta" class="form-select" aria-label="Default select example">
+                <!--Se llena dinámicamente-->
+            </select>
+            <div id="costos-impuestos">
+                <!--Se agrega el costo y los impuestos de la ruta dinámicamente-->
+                <p><b>Costo ruta: $</b></p>
+                <p><b>IVA: $</b></p>
+                <p><b>Tasa aeroportuaria: $</b></p>
+                <p><b>TOTAL: $</b></p>            
+            </div>
+        </div>
     </div>
 
 
