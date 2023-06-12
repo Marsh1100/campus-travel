@@ -62,8 +62,6 @@ let rutas = [
 const $main = document.getElementById('main-modulos');
 const $inicio = document.getElementById('inicio');
 
-//// Botones
-const $botonPuntos = document.getElementById('puntos');
 ///CLIENTES
 const $botonClientes = document.getElementById('clientes');
 const $mClientes = document.getElementById('modulo-clientes');
@@ -417,7 +415,27 @@ const $bSeleccionarCLiente = document.getElementById('botonSeleccionar');
 
 const $vCompraCliente =document.getElementById('cliente-compra');
 const $botonConfirmarCompra = document.getElementById('btn-comprar-tiquete');
-
+function listaClientesC(clientes){
+    $tablaClientesC.innerHTML="";
+    let contador = 1;
+    clientes.forEach(e => {
+        let html =`<tr id="${e.id}">
+                        <th scope="row">${contador}</th>
+                        <td>${e.id}</td>
+                        <td>${e.nombre}</td>
+                        <td>${e.apellidos}</td>
+                        <td>${e.telefono}</td>
+                        <td>${e.email}</td>
+                        <td>${e.fechaNac}</td>
+                        <td>${e.nacionalidad}</td>
+                        <td class="seleccionarRadio">
+                            <p><input type="radio" name="seleccionar" value="${e.id}"></p>
+                        </td>
+                    </tr>`
+        contador +=1;
+        $tablaClientesC.insertAdjacentHTML("beforeend", html);
+    }
+)};
 $botonCompraTiquete.addEventListener('click',function(){
     $main.style.display='none';
     $mCompras.style.display='flex';
@@ -469,27 +487,7 @@ $bBuscarClienteC.addEventListener('submit',function(e){
     }
 });
 
-function listaClientesC(clientes){
-    $tablaClientesC.innerHTML="";
-    let contador = 1;
-    clientes.forEach(e => {
-        let html =`<tr id="${e.id}">
-                        <th scope="row">${contador}</th>
-                        <td>${e.id}</td>
-                        <td>${e.nombre}</td>
-                        <td>${e.apellidos}</td>
-                        <td>${e.telefono}</td>
-                        <td>${e.email}</td>
-                        <td>${e.fechaNac}</td>
-                        <td>${e.nacionalidad}</td>
-                        <td class="seleccionarRadio">
-                            <p><input type="radio" name="seleccionar" value="${e.id}"></p>
-                        </td>
-                    </tr>`
-        contador +=1;
-        $tablaClientesC.insertAdjacentHTML("beforeend", html);
-    }
-)};
+
 
 //Llenar dinámicamente el select de la ruta
 function rutasSelector(){
@@ -630,5 +628,33 @@ document.addEventListener('click',function(event){
    
 });
 
+//MODULO FIDELIZAR PUNTOS
+const $botonPuntos = document.getElementById('puntos');
+const $mPuntos = document.getElementById('modulo-puntos');
+const $tablaClientesP =document.getElementById('template-clientesP')
 
+$botonPuntos.addEventListener('click',function(e){
+    $main.style.display='none';
+    $mPuntos.style.display='flex';
+
+    listaClientesP(clientes);
+})
+//Puntos de los clientes 
+function listaClientesP(clientes){
+    
+    $tablaClientesP.innerHTML="";
+    let contador = 1;
+    clientes.forEach(e => {
+        let html =`<tr>
+                        <th scope="row">${contador}</th>
+                        <td>${e.id}</td>
+                        <td>${e.nombre}</td>
+                        <td>${e.apellidos}</td>
+                        <td>${e.telefono}</td>
+                        <td>${e.puntos}</td>
+                    </tr>`
+        contador +=1;
+        $tablaClientesP.insertAdjacentHTML("beforeend", html);
+    }
+)};
 

@@ -206,6 +206,12 @@ input{
     border-radius: 20px;
     margin:auto;
 }
+
+/*modulo puntos*/
+.modulopuntos{
+    display: flex;
+    flex-direction: column;
+}
 .hidden{
     display: none;
 }
