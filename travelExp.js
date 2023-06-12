@@ -58,6 +58,7 @@ let rutas = [
         puntosRuta: 90,
     }
 ];
+
 //INICIO
 const $main = document.getElementById('main-modulos');
 const $inicio = document.getElementById('inicio');
@@ -219,7 +220,17 @@ function listaClientes(clientes){
         contador +=1;
         $tablaClientes.insertAdjacentHTML("beforeend", html);
     });   
+    addlocalStorageC();
 };
+
+function addlocalStorageC(){
+    localStorage.setItem('clientes', JSON.stringify(clientes));
+}
+
+document.addEventListener('DOMContentLoaded',function(){
+    clientes = JSON.parse(localStorage.getItem('clientes')) || clientes;
+    rutas = JSON.parse(localStorage.getItem('rutas')) || rutas;
+});
 
 //Función eliminar
 document.addEventListener('click',function(event){
@@ -353,10 +364,11 @@ $formAgregarRuta.addEventListener('submit',function(e){
     //pendientee
     listaRutas(rutas);
 
+    $formAgregarRuta.reset;
+
     $mRutas.style.filter='none';
     $vAgregarRuta.style.display='none';
 
-    $formAgregarRuta.reset;
 });
 
 //Función lista de rutas+
@@ -379,6 +391,11 @@ function listaRutas(rutas){
         $tarjetasRutas.insertAdjacentHTML("beforeend", html);
 
     });
+    addlocalStorageR();
+}
+
+function addlocalStorageR(){
+    localStorage.setItem('rutas', JSON.stringify(rutas));
 }
 
 //Función eliminar-ruta
